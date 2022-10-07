@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PROSTE DZIALANIA</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<a href="index.html"><img src="baner.jpg"></a>
+	</header>
+
+	<navigation>
+		<p>Menu</p><!-- Nie wiem, czy to nie powinna być lista-->
+		<p><a href="mathSimple.html">- proste działania</a></p>
+		<p><a href="mathPowers.php">- potęgowanie</a></p>
+	</navigation>
+
+	<section>
+		<h1>Proste działania</h1>
+
+		<label for="firstNumber">Podaj pierwszą liczbę:</label>
+		<input type="text" id="firstNumber"><br><br>
+
+		<label for="secondNumber">Podaj drugą liczbę:</label>
+		<input type="text" id="secondNumber"><br><br>
+
+		<button onclick="calculate('0')">DODAWANIE</button>
+		<button onclick="calculate('1')">ODEJMOWANIE</button>
+		<button onclick="calculate('2')">MNOZENIE</button>
+		<button onclick="calculate('3')">DZIELENIE</button>
+		
+		<p id="result"></p>
+	</section>
+
+	<script>
+		const RESULT_ELEMENT = document.getElementById("result");
+
+		const ADDITION_INDEX = 0;
+		const SUBTRACTION_INDEX = 1;
+		const MULTIPLICATION_INDEX = 2;
+		const DIVISION_INDEX = 3;
+
+		function calculate(operationIndex) {
+			var firstText = document.getElementById("firstNumber").value;
+			var secondText = document.getElementById("secondNumber").value;
+
+			if (firstText.length === 0 || secondText.length === 0) {
+				RESULT_ELEMENT.innerHTML = "Proszę uzupełnić obie liczby.";
+				return;
+			}
+		
+			if (parseInt(operationIndex) === DIVISION_INDEX && secondText === "0") {
+				RESULT_ELEMENT.innerHTML = "Nie wolno dzielić przez zero.";
+				return;
+			}
+
+			var firstNumber = parseFloat(firstText);
+			var secondNumber = parseFloat(secondText);
+			var result;
+
+			switch (parseInt(operationIndex)) {
+				case ADDITION_INDEX:
+					result = firstNumber + secondNumber;
+					break;
+				case SUBTRACTION_INDEX:
+					result = firstNumber - secondNumber;
+					break;
+				case MULTIPLICATION_INDEX:
+					result = firstNumber * secondNumber;
+					break;
+				case DIVISION_INDEX:
+					result = firstNumber / secondNumber;
+					break;
+				default:
+					RESULT_ELEMENT.innerHTML = "Unsupported operation exception";
+					return;
+			}
+			RESULT_ELEMENT.innerHTML = "Wynik: " + result;
+		}
+	</script>
+</body>
+</html>

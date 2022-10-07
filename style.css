@@ -1,0 +1,13 @@
+body {
+	margin: auto;
+	max-width: 720px;
+}
+
+navigation {
+	float: left;
+}
+
+section {
+	float: right;
+	font-style: italic;
+}
